@@ -8,3 +8,7 @@ class Child(models.Model):
     password = models.CharField(max_length=30)
     age = models.IntegerField()
     points = models.IntegerField()
+
+    def __str__(self):
+        title = self.first_name + ' ' + self.last_name
+        return title
