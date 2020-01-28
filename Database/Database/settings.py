@@ -101,8 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CSRF_COOKIE_DOMAIN = 'http://127.0.0.1:8000/insertChild'
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
