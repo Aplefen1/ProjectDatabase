@@ -12,3 +12,6 @@ class Child(models.Model):
     def __str__(self):
         title = self.first_name + ' ' + self.last_name
         return title
+
+    def Info(self):
+    	return self.first_name, self.last_name, self.username, self.password, self.age, self.points

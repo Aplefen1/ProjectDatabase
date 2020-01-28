@@ -21,6 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'gq3p!holck*_qu0&s%v^+$m(8)85x09m+__b_uhbog)l)+(3@5'
+CSRF_COOKIE_SECURE=False
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -99,6 +100,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CSRF_COOKIE_DOMAIN = 'http://127.0.0.1:8000/insertChild'
 
 
 # Internationalization
