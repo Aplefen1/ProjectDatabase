@@ -3,6 +3,7 @@ from .models import Child
 from django.http import HttpResponse
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
+from .methods import *
 
 # Create your views here.
 @csrf_exempt
@@ -17,14 +18,16 @@ def showChild(request):
 def newChild(request):
 	print("new child called")
 	if request.method == "POST":
-		reqDic = request.POST
-		fname = reqDic["name"]
-		lname = reqDic["lastname"]
-		uname = reqDic["username"]
-		pword = reqDic["password"]
-		ag = reqDic["age"]
-		pnts = 0
+		#the method will attempt to save the new child in the request, if it cant iot will return an error message, if it can it will return a success message
+		response = addChild(request)
+	else:
+		response = "You have processed the wrong type of request"
 
-		createdChild = Child(first_name=fname, last_name=lname, username=uname, password=pword, age=ag, points=pnts)
-		createdChild.save()
+	return HttpResponse(response)
 
+		
+
+@csrf_exempt
+def confirmLogin(request):
+	print("Login Resquest called")
+	if request.method == "POST"
