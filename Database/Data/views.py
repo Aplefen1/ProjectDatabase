@@ -30,4 +30,9 @@ def newChild(request):
 @csrf_exempt
 def confirmLogin(request):
 	print("Login Resquest called")
-	if request.method == "POST"
+	if request.method == "POST":
+		response = checkLogin(request)
+	elif request.method == "GET":
+		response = "Wrong Method"
+
+	return HttpResponse(response)

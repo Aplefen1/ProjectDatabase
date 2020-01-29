@@ -20,5 +20,6 @@ from Data import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('showChild', views.showChild, name='showChild'),
-    path('newChild', views.newChild, name='newChild')
+    path('newChild', views.newChild, name='newChild'),
+    path('confirmLogin', views.confirmLogin, name='confirmLogin'),
 ]

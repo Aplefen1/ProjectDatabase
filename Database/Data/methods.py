@@ -5,39 +5,60 @@ from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
 def addChild(req):
-	bool exists
-	str message
 
 	#Takes the request's POST data and makes it into a dictionary
 	reqDic = req.POST
 	#each attribute is accesed by the key in the request
-	fname = req["name"]
-	lname = req["lastname"]
-	uname = req["username"]
-	pword = req["password"]
-	ag = req["age"]
+	fname = reqDic["name"]
+	lname = reqDic["lastname"]
+	uname = reqDic["username"]
+	pword = reqDic["password"]
+	ag = reqDic["age"]
 	#this is a new child so their points will start off as zero
 	pnts = 0
 
+	#finds a query set of all the objects that are duplicates
 	checkChild = Child.objects.filter(first_name=fname, last_name=lname, username=uname, password=pword, age=ag, points=pnts)
-	exists = False
 
 	#checks to see if the child exists, if it doesnt an error will occur so that the 'exists' variable will stay False
+	#if finding the username gives an error
 	try:
-		checkChild.first_name
+		checkChild[0].username
+	#then the child doesnt exist
 	except:
+		exists = False
+	#otherwise it does exist
+	else:
+		print("This user does exist", checkChild)
 		exists = True
 
 	#A new child is created and saved.
 	if exists == False:
 		createdChild = Child(first_name=fname, last_name=lname, username=uname, password=pword, age=ag, points=pnts)
 		createdChild.save()
-		mesage = "True"
+		message = "True"
 
 	#an appropriate message is returned if the child exists
 	elif exists == True:
 		message = "False: Child already exists"
 
 	return message
+
+	
+
+def checkLogin(req):
+
+	reqDic = req.POST
+	username = reqDic["username"]
+	password = reqDic["password"]
+
+	subject = Child.objects.filter(username=username)
+
+	if subject[0].password == password:
+		return "True"
+	
+	else:
+		return "False"
+
 
 	
