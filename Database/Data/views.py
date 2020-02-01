@@ -25,8 +25,6 @@ def newChild(request):
 
 	return HttpResponse(response)
 
-		
-
 @csrf_exempt
 def confirmLogin(request):
 	print("Login Resquest called")
