@@ -34,3 +34,12 @@ def confirmLogin(request):
 		response = "Wrong Method"
 
 	return HttpResponse(response)
+
+@csrf_exempt
+def getClassroom(request):
+	print("Get Classroom called")
+	if request.method == "POST":
+		response = getStudentsFromClass(request)
+	elif request.method == "GET":
+		response = "Wrong Method"
+	return HttpResponse(response)

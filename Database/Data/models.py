@@ -12,9 +12,9 @@ class Child(models.Model):
     points = models.IntegerField(default=0)
 
     #create many to one rerlationships with the other models
-    classroom = models.ForeignKey('Classroom', default=None, on_delete=models.CASCADE)
-    teacher = models.ForeignKey('Teacher', default=None, on_delete=models.CASCADE)
-    school = models.ForeignKey('School', default=None, on_delete=models.CASCADE)
+    classroom = models.ForeignKey('Classroom', default=None, on_delete=models.CASCADE, blank=True,null=True)
+    teacher = models.ForeignKey('Teacher', default=None, on_delete=models.CASCADE, blank=True,null=True)
+    school = models.ForeignKey('School', default=None, on_delete=models.CASCADE, blank=True,null=True)
 
     #creates a nice title for the child
     def __str__(self):
@@ -33,8 +33,8 @@ class Teacher(models.Model):
     age = models.IntegerField()
 
     #Many to one relatiopnships with the relevant models
-    classroom = models.ForeignKey('Classroom', default=None, on_delete=models.CASCADE)
-    school = models.ForeignKey('School', default=None, on_delete=models.CASCADE)
+    classroom = models.ForeignKey('Classroom', default=None, on_delete=models.CASCADE, blank=True,null=True)
+    school = models.ForeignKey('School', default=None, on_delete=models.CASCADE, blank=True,null=True)
 
     def __str__(self):
         title = self.first_name + ' ' + self.last_name
@@ -44,7 +44,7 @@ class Task(models.Model):
     task_name = models.CharField(max_length=32)
     task = models.CharField(max_length=32)
 
-    teacher = models.ForeignKey('Teacher', default=None, on_delete=models.CASCADE)
+    teacher = models.ForeignKey('Teacher', default=None, on_delete=models.CASCADE, blank=True,null=True)
 
     def __str__(self):
         title = self.task_name
@@ -53,7 +53,7 @@ class Task(models.Model):
 class Classroom(models.Model):
     classroom_name = models.CharField(max_length=32)
 
-    current_task = models.ForeignKey('Task', default=None, on_delete=models.CASCADE)
+    current_task = models.ForeignKey('Task', default=None, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         title = self.classroom_name

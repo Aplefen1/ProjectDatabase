@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Child
+from .models import Classroom
 from django.http import HttpResponse
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
@@ -60,5 +61,21 @@ def checkLogin(req):
 	else:
 		return "False"
 
+def getStudentsFromClass(req):
+	reqDic = req.POST
+	classname = reqDic["classname"]
+
+	#First find the classroom with the given name
+	findClass = Classroom.objects.filter(classroom_name=classname)
+	#Then take the id of that classroom
+	classroomId = findClass[0].id
+	#Then find all the students withg that id in their classroom field
+	students = Child.objects.filter(classroom=classroomId)
+
+	responseString = ''
+	for stud in students:
+		responseString = responseString + 'Name:' + stud.first_name, stud.last_name, ' Points:' + str(stud.points)
+
+	return responseString
 
 	
