@@ -43,3 +43,11 @@ def getClassroom(request):
 	elif request.method == "GET":
 		response = "Wrong Method"
 	return HttpResponse(response)
+
+@csrf_exempt
+def returnClasses(request):
+	if request.method == "POST":
+		response = returnClassrooms(request)
+	elif request.method == "GET":
+		response = "Wrong Method"
+	return HttpResponse(response)

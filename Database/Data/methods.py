@@ -4,6 +4,7 @@ from .models import Classroom
 from django.http import HttpResponse
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 def addChild(req):
 
@@ -45,8 +46,6 @@ def addChild(req):
 
 	return message
 
-	
-
 def checkLogin(req):
 
 	reqDic = req.POST
@@ -72,10 +71,20 @@ def getStudentsFromClass(req):
 	#Then find all the students withg that id in their classroom field
 	students = Child.objects.filter(classroom=classroomId)
 
-	responseString = ''
+	responseDict = {}
 	for stud in students:
-		responseString = responseString + 'Name:' + stud.first_name, stud.last_name, ' Points:' + str(stud.points)
+		responseDict[stud.first_name+stud.last_name] = stud.points
+		print(responseDict)
 
-	return responseString
+	responseJson = json.dumps(responseDict)
+	return responseJson
 
+def returnClassrooms(req):
+	classrooms = Classroom.objects.all()
+	responseList = []
+
+	for cl in classrooms:
+		responseList.append(cl.classroom_name)
 	
+	classroomsJson = json.dumps(responseList)
+	return classroomsJson
