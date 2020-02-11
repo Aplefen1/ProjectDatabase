@@ -49,5 +49,5 @@ def returnClasses(request):
 	if request.method == "POST":
 		response = returnClassrooms(request)
 	elif request.method == "GET":
-		response = "Wrong Method"
+		response = returnClassrooms(request)
 	return JsonResponse(response)
