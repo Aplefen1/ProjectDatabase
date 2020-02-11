@@ -35,13 +35,12 @@ def addChild(req):
 		exists = True
 
 	#A new child is created and saved.
-	if exists == False:
 		createdChild = Child(first_name=fname, last_name=lname, username=uname, password=pword, age=ag, points=pnts)
 		createdChild.save()
 		message = "True"
 
 	#an appropriate message is returned if the child exists
-	elif exists == True:
+	if exists == True:
 		message = "False: Child already exists"
 
 	return message
@@ -81,10 +80,13 @@ def getStudentsFromClass(req):
 
 def returnClassrooms(req):
 	classrooms = Classroom.objects.all()
+	responseDict = {}
 	responseList = []
 
 	for cl in classrooms:
 		responseList.append(cl.classroom_name)
+
+	responseDict['names'] = responseList
+	responseDict['length'] = len(responseList)
 	
-	classroomsJson = json.dumps(responseList)
-	return classroomsJson
+	return responseDict

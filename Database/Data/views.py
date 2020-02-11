@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Child
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 from .methods import *
@@ -50,4 +50,4 @@ def returnClasses(request):
 		response = returnClassrooms(request)
 	elif request.method == "GET":
 		response = "Wrong Method"
-	return HttpResponse(response)
+	return JsonResponse(response)
