@@ -71,12 +71,16 @@ def getStudentsFromClass(req):
 	students = Child.objects.filter(classroom=classroomId)
 
 	responseDict = {}
+	li = []
 	for stud in students:
-		responseDict[stud.first_name+stud.last_name] = stud.points
-		print(responseDict)
+		stu = {}
+		stu["name"] = stud.first_name+stud.last_name
+		stu["points"] = stud.points
+		li.append(stu)
 
-	responseJson = json.dumps(responseDict)
-	return responseJson
+	print(li)
+	responseDict["children"] = li
+	return responseDict
 
 def returnClassrooms(req):
 	classrooms = Classroom.objects.all()

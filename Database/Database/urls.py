@@ -22,6 +22,7 @@ urlpatterns = [
     path('showChild', views.showChild, name='showChild'),
     path('newChild', views.newChild, name='newChild'),
     path('confirmLogin', views.confirmLogin, name='confirmLogin'),
-    path('getClassContents', views.getClassroom, name="getClassroom"),
-    path('returnClasses', views.returnClasses, name="returnClasses")
+    path('getClassroom', views.getClassroom, name="getClassroom"),
+    path('returnClasses', views.returnClasses, name="returnClasses"),
+    path('returnChildren', views.returnChildren, name="returnChildren")
 ]

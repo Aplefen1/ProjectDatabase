@@ -51,3 +51,10 @@ def returnClasses(request):
 	elif request.method == "GET":
 		response = returnClassrooms(request)
 	return JsonResponse(response)
+
+@csrf_exempt
+def returnChildren(request):
+	if request.method == "POST":
+		response = getStudentsFromClass(request)
+
+	return JsonResponse(response)
