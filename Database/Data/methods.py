@@ -20,7 +20,7 @@ def addChild(req):
 	pnts = 0
 
 	#finds a query set of all the objects that are duplicates
-	checkChild = Child.objects.filter(first_name=fname, last_name=lname, username=uname, password=pword, age=ag, points=pnts)
+	checkChild = Child.objects.filter(username=uname)
 
 	#checks to see if the child exists, if it doesnt an error will occur so that the 'exists' variable will stay False
 	#if finding the username gives an error
@@ -37,7 +37,7 @@ def addChild(req):
 	#an appropriate message is returned if the child exists
 	if exists == True:
 		message = "False: Child already exists"
-		
+
 	else:
 		#A new child is created and saved.
 		createdChild = Child(first_name=fname, last_name=lname, username=uname, password=pword, age=ag, points=pnts)
