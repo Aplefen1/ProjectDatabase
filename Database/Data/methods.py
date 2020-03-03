@@ -34,14 +34,16 @@ def addChild(req):
 		print("This user does exist", checkChild)
 		exists = True
 
-	#A new child is created and saved.
+	#an appropriate message is returned if the child exists
+	if exists == True:
+		message = "False: Child already exists"
+		
+	else:
+		#A new child is created and saved.
 		createdChild = Child(first_name=fname, last_name=lname, username=uname, password=pword, age=ag, points=pnts)
 		createdChild.save()
 		message = "True"
 
-	#an appropriate message is returned if the child exists
-	if exists == True:
-		message = "False: Child already exists"
 
 	return message
 
@@ -93,4 +95,22 @@ def returnClassrooms(req):
 	responseDict['names'] = responseList
 	responseDict['length'] = len(responseList)
 	
+	return responseDict
+
+def GetChildData(req):
+	reqDic = req.POST
+	uname = reqDic["username"]
+
+	findChild = Child.objects.filter(username=uname)
+	child = findChild[0]
+	print(child)
+
+	responseDict = {}
+
+	responseDict["first name"] = child.first_name
+	responseDict["lastname"] = child.last_name
+	responseDict["username"] = child.username
+	responseDict["age"] = child.age
+	responseDict["points"] = child.points
+
 	return responseDict

@@ -42,7 +42,7 @@ def getClassroom(request):
 		response = getStudentsFromClass(request)
 	elif request.method == "GET":
 		response = "Wrong Method"
-	return HttpResponse(response)
+	return JsonResponse(response)
 
 @csrf_exempt
 def returnClasses(request):
@@ -57,4 +57,9 @@ def returnChildren(request):
 	if request.method == "POST":
 		response = getStudentsFromClass(request)
 
+	return JsonResponse(response)
+
+@csrf_exempt
+def ReturnChildData(request):
+	response = GetChildData(request)
 	return JsonResponse(response)

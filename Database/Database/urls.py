@@ -24,5 +24,6 @@ urlpatterns = [
     path('confirmLogin', views.confirmLogin, name='confirmLogin'),
     path('getClassroom', views.getClassroom, name="getClassroom"),
     path('returnClasses', views.returnClasses, name="returnClasses"),
-    path('returnChildren', views.returnChildren, name="returnChildren")
+    path('returnChildren', views.returnChildren, name="returnChildren"),
+    path('ReturnChildData', views.ReturnChildData, name="ReturnChildData")
 ]
