@@ -107,7 +107,7 @@ def GetChildData(req):
 
 	responseDict = {}
 
-	responseDict["first name"] = child.first_name
+	responseDict["firstname"] = child.first_name
 	responseDict["lastname"] = child.last_name
 	responseDict["username"] = child.username
 	responseDict["age"] = child.age
